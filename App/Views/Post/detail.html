@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}昨日头条{% endblock %}
+
+{% block body %}
+    <div class="indexWrapper">
+        <nav class="top-nav">
+            <div class="nav-wrapper container">
+                <a class="page-title" href="/">
+                    <span>昨日头条</span>
+                </a>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row section">
+                <div class="col s12">
+                    <h4 class="postTitle">{{post.title}}</h4>
+                    {% autoescape false %}
+                    <div class="post">{{post.content}}</div>
+                    {% endautoescape %}
+                </div>
+            </div>
+            <div class="row section">
+                <div class="col s12">
+                    <div class="commentWrapper">
+                        <ul>
+                            <li class="card lighten-5">
+                                <form name="commentForm" id="commentForm" data-action="/comment/add">
+                                    <input name="postId" type="hidden" value="{{post.id}}"/>
+                                    <input name="username" placeholder="名字"/>
+                                    <div class="input-field">
+                                        <textarea placeholder="内容" name="content" class="materialize-textarea"></textarea>
+                                    </div>
+                                    <!--<div class="input-field">-->
+                                        <div id="comment-btn" class="btn waves-effect waves-light">发表</div>
+                                    <!--</div>-->
+                                </form>
+                            </li>
+                            {% for comment in comments %}
+                            <li class="card lighten-5">
+                                <div class="card-content">
+                                    <p class="info">
+                                        {% if comment.username %}
+                                        {{comment.username}}
+                                        {% else %}
+                                        匿名用户
+                                        {% endif %}
+                                        {{comment.createAt}}
+                                    </p>
+                                    <p class="content">
+                                        {% autoescape false %}
+                                        {{comment.content}}
+                                        {% endautoescape %}
+                                    </p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    $("#comment-btn").click(function () {
+        var data = $('#commentForm').serialize();
+        console.log(data)
+        jQuery.ajax({
+            type:'post',
+            url:'/comment/add',
+            data:data,
+            success:function(data){
+                console.log('请求成功')
+                location.reload(true);
+            },
+            error:function(){
+                console.log('请求失败')
+            }
+        });
+    });
+</script>
+{% endblock %}
+

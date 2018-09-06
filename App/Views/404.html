@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found{% endblock %}
+
+{% block body %}
+
+    {% if message %}
+        <h1>{{ message }}</h1>
+    {% else %}
+        <h1>你所访问的是未知宇宙</h1>
+    {% endif %}
+{% endblock %}

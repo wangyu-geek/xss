@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+
+{% block title %}昨日头条{% endblock %}
+
+{% block body %}
+<div class="loginWrapper container">
+    <div class="row section">
+        <div class="col s6 offset-s3">
+            <h4>登陆</h4>
+            <form name="loginForm" action="/user/doLogin" method="post">
+                <div class="input-field">
+                    <input name="username" placeholder="用户名">
+                </div>
+                <div class="input-field">
+                    <input name="password" type="password" placeholder="密码">
+                </div>
+                <div class="input-field">
+                    <button class="waves-effect waves-light btn">登陆</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
