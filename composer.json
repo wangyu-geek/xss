@@ -1,6 +1,7 @@
 {
     "require": {
-        "twig/twig": "~2.0"
+        "twig/twig": "~2.0",
+        "ezyang/htmlpurifier": "^4.10"
     },
     "autoload": {
         "psr-4": {

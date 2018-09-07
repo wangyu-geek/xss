@@ -33,7 +33,7 @@ class user extends Controller
 
         if($user['password'] == $pwd) {
             $uuid = StringHelper::getUUid();
-            setcookie('uuid', $uuid, time()+3600, '/');
+            setcookie('uuid', $uuid, time()+36000, '/');
             \App\Models\User::setUUid($username, $uuid);
             $this->redirect('/Home/index');
         } else {
