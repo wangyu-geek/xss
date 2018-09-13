@@ -1,3 +1,4 @@
 XSS 漏洞学习
-配置文件
-App/Config.php
+
+框架参考[daveh php-mvc](https://github.com/daveh/php-mvc)
+
