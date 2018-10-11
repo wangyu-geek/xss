@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}昨日头条{% endblock %}
+
+{% block body %}
+<div class="indexWrapper">
+    {% autoescape false %}
+    <span>{{worm}}</span>
+    {% endautoescape %}
+    <nav class="top-nav">
+        <div class="nav-wrapper container">
+            <a class="page-title" href="/">
+                <span>昨日头条</span>
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+        一个普通的页面
+    </div>
+</div>
+
+{% endblock %}
+
