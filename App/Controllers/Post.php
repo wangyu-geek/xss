@@ -18,19 +18,59 @@ use Core\View;
 class Post extends Controller
 {
     /**
-     * Show the index page
-     *
-     * @return void
+     * 文章详情
+     * @throws NotFoundException
      */
     public function detailAction()
     {
         $id = $_GET['id'];
         $post = $this->findModel($id);
+        $worm = $_GET['worm'] ?? '';
         $comments = CommentModel::getByPostId($id);
         View::renderTemplate('Post/detail.html',[
             'post' => $post,
+            'worm' => $worm,
             'comments' => $comments,
         ]);
+    }
+
+    public function addAction()
+    {
+        if($this->isGet()) {
+            View::renderTemplate('Post/add.html');
+        }
+        else{
+            $post = $this->beforeAdd();
+            if($post === false) {
+                $this->renderAjax([
+                    'msg' => '参数错误'
+                ]);
+            }
+            if($post->create()) {
+                $this->renderAjax([
+                    'msg' => '添加成功'
+                ]);
+            } else {
+                $this->renderAjax([
+                    'msg' => '添加失败'
+                ]);
+            }
+        }
+    }
+
+    private function beforeAdd()
+    {
+        $title = $_POST['title'] ?? '';
+        $imgUrl = $_POST['imgUrl'] ?? '';
+        $content = $_POST['content'] ?? '';
+        if(empty($title) || empty($imgUrl) || empty($content)) {
+            return false;
+        }
+        $post = new PostModel();
+        $post->setContent($content);
+        $post->setImgUrl($imgUrl);
+        $post->setTitle($title);
+        return $post;
     }
 
     /**
@@ -47,4 +87,6 @@ class Post extends Controller
         }
         return $posts;
     }
+
+
 }

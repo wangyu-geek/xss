@@ -31,6 +31,11 @@ class Home extends Controller
         $comments = Comment::getTop10();
 //        $from = htmlspecialchars($from);
 
+//        $purifier = new \HTMLPurifier(); 过滤<script> 等标签，但不能解决“跳过”
+//        $jump = $purifier->purify($jump);
+
+//        $jump = htmlspecialchars($jump); 可以解决跳过
+
         View::renderTemplate('Home/index.html',[
             'posts' => $posts,
             'comments' => $comments,

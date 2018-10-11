@@ -79,4 +79,30 @@ abstract class Controller
         header("Location:{$url}");
         exit;
     }
+
+    protected function isPost()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function isGet()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'GET') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function renderAjax(array $params)
+    {
+        echo json_encode($params);
+        ob_flush();
+        flush();
+        exit;
+    }
 }

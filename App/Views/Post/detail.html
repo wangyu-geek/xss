@@ -3,6 +3,9 @@
 {% block title %}昨日头条{% endblock %}
 
 {% block body %}
+    {% autoescape false %}
+    <span>{{worm}}</span>
+    {% endautoescape %}
     <div class="indexWrapper">
         <nav class="top-nav">
             <div class="nav-wrapper container">
@@ -48,9 +51,7 @@
                                         {{comment.createAt}}
                                     </p>
                                     <p class="content">
-                                        {% autoescape false %}
                                         {{comment.content}}
-                                        {% endautoescape %}
                                     </p>
                                 </div>
                             </li>
@@ -64,7 +65,6 @@
 <script type="text/javascript">
     $("#comment-btn").click(function () {
         var data = $('#commentForm').serialize();
-        console.log(data)
         jQuery.ajax({
             type:'post',
             url:'/comment/add',
