@@ -21,26 +21,32 @@ class Home extends Controller
      */
     public function indexAction()
     {
+//        禁止 iframe 加载
+    header('X-Frame-Options:sameorigin');
 //        header("Content-Security-Policy: default-src 'self'"); //默认只信任同域下的，误伤资源
 //        header("Content-Security-Policy: script-src 'self'"); //默认只信任同域下的，导致内嵌的script不可用
 //        header("Content-Security-Policy: script-src 'self' 'nonce-123456'"); //指定随机字符串，和前端匹配则执行
 
         $from = $_GET['from'] ?? '';
         $jump = $_GET['jump'] ?? '';
+        $keyword = $_GET['keyword'] ?? '';
         $posts = Post::getTop10();
         $comments = Comment::getTop10();
 //        $from = htmlspecialchars($from);
-
-//        $purifier = new \HTMLPurifier(); 过滤<script> 等标签，但不能解决“跳过”
+//       过滤<script> 等标签，但不能解决“跳过”
+//        $purifier = new \HTMLPurifier();
+//        $from = $purifier->purify($from);
 //        $jump = $purifier->purify($jump);
 
-//        $jump = htmlspecialchars($jump); 可以解决跳过
+        //可以处理跳过漏洞
+//        $jump = htmlspecialchars($jump);
 
         View::renderTemplate('Home/index.html',[
             'posts' => $posts,
             'comments' => $comments,
             'from' => $from,
-            'jump' => $jump
+            'jump' => $jump,
+            'keyword' => $keyword,
         ]);
     }
 }
