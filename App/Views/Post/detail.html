@@ -51,7 +51,9 @@
                                         {{comment.createAt}}
                                     </p>
                                     <p class="content">
+                                        {% autoescape false %}
                                         {{comment.content}}
+                                        {% endautoescape %}
                                     </p>
                                 </div>
                             </li>
