@@ -23,23 +23,12 @@ class Home extends Controller
     {
 //        禁止 iframe 加载
     header('X-Frame-Options:sameorigin');
-//        header("Content-Security-Policy: default-src 'self'"); //默认只信任同域下的，误伤资源
-//        header("Content-Security-Policy: script-src 'self'"); //默认只信任同域下的，导致内嵌的script不可用
-//        header("Content-Security-Policy: script-src 'self' 'nonce-123456'"); //指定随机字符串，和前端匹配则执行
 
         $from = $_GET['from'] ?? '';
         $jump = $_GET['jump'] ?? '';
         $keyword = $_GET['keyword'] ?? '';
         $posts = Post::getTop10();
         $comments = Comment::getTop10();
-//        $from = htmlspecialchars($from);
-//       过滤<script> 等标签，但不能解决“跳过”
-//        $purifier = new \HTMLPurifier();
-//        $from = $purifier->purify($from);
-//        $jump = $purifier->purify($jump);
-
-        //可以处理跳过漏洞
-//        $jump = htmlspecialchars($jump);
 
         View::renderTemplate('Home/index.html',[
             'posts' => $posts,
@@ -49,4 +38,20 @@ class Home extends Controller
             'keyword' => $keyword,
         ]);
     }
+
+
+
+// header("Content-Security-Policy: default-src 'self'"); //默认只信任同域下的，误伤资源
+//默认只信任同域下的，导致内嵌的script不可用
+// header("Content-Security-Policy: script-src 'self'");
+//指定随机字符串，和前端匹配则执行
+// header("Content-Security-Policy: script-src 'self' 'nonce-123456'");
+// $from = htmlspecialchars($from);
+
+// 过滤<script> 等标签，但不能解决“跳过”
+//$purifier = new \HTMLPurifier();
+// $from = $purifier->purify($from);
+//$jump = $purifier->purify($jump);
+//可以处理跳过漏洞
+// $jump = htmlspecialchars($jump);
 }
