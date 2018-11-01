@@ -21,11 +21,8 @@ class Home extends Controller
      */
     public function indexAction()
     {
-//        禁止 iframe 加载
-    header('X-Frame-Options:sameorigin');
 
         $from = $_GET['from'] ?? '';
-        $jump = $_GET['jump'] ?? '';
         $keyword = $_GET['keyword'] ?? '';
         $posts = Post::getTop10();
         $comments = Comment::getTop10();
@@ -34,7 +31,6 @@ class Home extends Controller
             'posts' => $posts,
             'comments' => $comments,
             'from' => $from,
-            'jump' => $jump,
             'keyword' => $keyword,
         ]);
     }

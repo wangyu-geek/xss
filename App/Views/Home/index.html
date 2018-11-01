@@ -5,13 +5,14 @@
 {% block body %}
 {% autoescape false %}
 <script>
-    var jump = "{{jump}}"
+    var from = "{{from}}";
+
 </script>
 {% endautoescape %}
     <div class="indexWrapper">
         <nav class="top-nav">
             <div class="nav-wrapper container">
-                <a class="page-title" href="/">
+                <a class="page-title">
                     <span>昨日头条</span>
                     {% if from %}
                     {% autoescape false %}
@@ -25,7 +26,7 @@
             <div class="row section indexBody">
                 <div class="col s8">
                     <a href="#">
-                        <img class="responsive-img cover" src="http://t2.hddhhn.com/uploads/tu/201612/98/st93.png"/>
+                        <img class="responsive-img cover" src="http://p1yvzhu3t.bkt.clouddn.com/banner.png"/>
                     </a>
                     <ul class="section">
                         {% for post in posts %}
@@ -68,6 +69,7 @@
             </div>
         </div>
     </div>
+    <a href="/?from=1"></a>
 <script type="text/javascript" nonce="123456">
     console.log(123456)
 </script>
