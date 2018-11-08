@@ -1,5 +1,6 @@
 <?php
 defined('DIR') or define('DIR', __DIR__);
+defined('BASEDIR') or define('BASEDIR', dirname(__DIR__));
 defined('STATIC') or define('STATIC', DIR.'/static');
 
 date_default_timezone_set('Asia/Shanghai');
