@@ -16,7 +16,7 @@ class Home extends Controller
 {
     /**
      * Show the index page
-     *
+     * 首页
      * @return void
      */
     public function indexAction()

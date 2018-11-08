@@ -2,21 +2,26 @@
 
 {% block title %}昨日头条{% endblock %}
 
+
+
 {% block body %}
+{% autoescape false %}
+<script>
+     var worm = "{{worm}}";
+</script>
+{% endautoescape %}
 <div class="indexWrapper">
-    {% autoescape false %}
-    <span>{{worm}}</span>
-    {% endautoescape %}
     <nav class="top-nav">
         <div class="nav-wrapper container">
             <a class="page-title" href="/">
-                <span>昨日头条</span>
+                <span>昨日头条-名人堂</span>
             </a>
         </div>
     </nav>
     <div class="container">
-        一个普通的页面
-    <img class="responsive-img" style="width:200px;" src="http://video.xmserver.cn/%E6%97%A5%E8%AE%B0.jpg">
+        {% autoescape false %}
+        <h1>来自{{worm}}的朋友</h1>
+        {% endautoescape %}
     </div>
 </div>
 <script type="text/javascript">

