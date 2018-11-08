@@ -34,6 +34,9 @@ class Post extends Controller
         ]);
     }
 
+    /**
+     * 添加文章
+     */
     public function addAction()
     {
         if($this->isGet()) {
@@ -58,6 +61,10 @@ class Post extends Controller
         }
     }
 
+    /**
+     * 数据校验
+     * @return PostModel|bool
+     */
     private function beforeAdd()
     {
         $title = $_POST['title'] ?? '';

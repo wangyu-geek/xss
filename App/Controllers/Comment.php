@@ -32,6 +32,7 @@ class Comment extends Controller
     }
 
     /**
+     * 数据校验
      * @return \App\Models\Comment|bool
      */
     private function beforeAdd()

@@ -8,8 +8,8 @@ use Core\View;
 use Core\Controller;
 
 /**
- * Home controller
- *
+ * Report controller
+ * 接收CSP请求，并写入日志
  * PHP version 7.0
  */
 class Report extends Controller
@@ -31,6 +31,7 @@ class Report extends Controller
         // 写入日志
         if ($json_data = json_decode($json_data)) {
             $json_data = json_encode($json_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+            $json_data = date("Y-M-D H:i:s")."\n".$json_data."\n";
             file_put_contents($log_file, $json_data, FILE_APPEND | LOCK_EX);
         }
     }
